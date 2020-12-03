@@ -190,7 +190,7 @@ namespace Devdog.InventoryPro.Demo
 
             droppedLoot = true;
 
-            agent.Stop();
+            agent.isStopped = true;
 
             StartCoroutine(SinkIntoGround());
 

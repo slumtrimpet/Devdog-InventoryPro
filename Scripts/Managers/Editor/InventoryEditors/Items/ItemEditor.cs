@@ -141,7 +141,7 @@ namespace Devdog.InventoryPro.Editors
 				InventoryScriptableObjectUtility.SetPrefabSaveFolderIfNotSet();
 				var prefabPath = InventoryScriptableObjectUtility.GetSaveFolderForFolderName("Items") + Path.AltDirectorySeparatorChar + GetAssetName(comp);
 
-				var prefab = PrefabUtility.CreatePrefab(prefabPath, instanceObj);
+				var prefab = PrefabUtility.SaveAsPrefabAsset(instanceObj, prefabPath);
 				UnityEngine.Object.DestroyImmediate(instanceObj);
 				AddItem(prefab.gameObject.GetComponent<InventoryItemBase>(), true);
 
@@ -451,9 +451,8 @@ namespace Devdog.InventoryPro.Editors
 
 			List<InventoryItemBase> crudListResult = new List<InventoryItemBase>();
 			var crudListCopy = crudList;
-			InventoryItemBase realPrefab = null;
 			uint lastID = 0;
-			for (int i = 0, j = 0; i < crudListCopy.Count; ++i)
+			for (int i = 0; i < crudListCopy.Count; ++i)
 			{
 				var item = crudListCopy[i];
 				if (item != null)
